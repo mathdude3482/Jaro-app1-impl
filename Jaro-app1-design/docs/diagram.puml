@@ -1,0 +1,120 @@
+@startuml
+@startuml
+
+class ToDoListApplication {
+    + main()
+    + start()
+}
+class ItemController {
+    - allList: ToDoList
+    + itemTable: TableView<Item>
+    + descDisplay: TableColumn<Item, String>
+    + dateDisplay: TableColumn<Item, String>
+    + completeDisplay: TableColumn<Item, String>
+    + initialize()
+    + addClicked()
+    + removeClicked()
+    + clearClicked()
+    + editDescClicked()
+    + editDateClicked()
+    + editCompleteClicked()
+    + displayAllClicked()
+    + displayCompleteClicked()
+    + displayIncompleteClicked()
+    + saveListClicked()
+    + loadListClicked()
+    + openHelpWindowClicked()
+    + addItem()
+    + addItemTable(Item)
+    + removeItem(Item)
+    + removeItemTable(Integer)
+    + clearList()
+    + clearItemTable()
+    + editDescription(Integer, Item)
+    + changeDescription(String, Item)
+    + changeDescriptionTable(Item, Integer)
+    + editDueDate(Integer, Item)
+    + changeDate(String, Item)
+    + changeDateTable(Item, Integer)
+    + editComplete(Item)
+    + editCompleteTable(Integer, Item)
+    + displayAll()
+    + displayComplete(List<Item>)
+    + displayIncomplete(List<Item>)
+    + getCompleteList()
+    + getIncompleteList()
+    + matchItem(Item)
+    + openInputWindow(String, String)
+    + openSaveFileChooser()
+    + openLoadFileChooser()
+    + getAllList()
+}
+
+class HelpWindowController {
+    + helpTextBox: TextArea
+    + tableHelpClicked()
+    + addHelpClicked()
+    + removeHelpClicked()
+    + clearHelpClicked()
+    + editDescriptionHelpClicked()
+    + editDueDateHelpClicked()
+    + editCompleteHelpClicked()
+    + displayHelpClicked()
+    + saveHelpClicked()
+    + tableHelp()
+    + addHelp()
+    + removeHelp()
+    + clearHelp()
+    + editDescriptionHelp()
+    + editDueDateHelp()
+    + editCompleteHelp()
+    + displayHelp()
+    + saveHelp()
+}
+class Item {
+    - description: String
+    - dueDate: CreateDate
+    - dueDateString: String
+    - isComplete: boolean
+    + setDescription(String)
+    + setComplete(Boolean)
+    + setDueDate(CreateDate)
+    + getDescription()
+    + getIsComplete()
+    + getDueDateString()
+}
+class CreateDate {
+    - year: double
+    - month: double
+    - date: double
+    + getDate()
+}
+
+class Validator {
+    + validDescription(String)
+    + validDueDate(String)
+    - validFormat(String[])
+    - validMonth(Integer)
+    - validDate(Integer, Integer)
+    - CheckFebruary(Integer, Integer)
+}
+class ToDoList {
+    - list: List<Item>
+    + getList()
+    + setList(List<Item>)
+}
+class Serialization {
+    + saveList(String, List<Item>)
+    + loadJson(String)
+}
+
+javafx.Application <|-- ToDoListApplication
+ToDoListApplication -- ItemController
+ItemController -- Serialization
+ItemController - HelpWindowController
+ItemController *-- Item
+ItemController - Validator
+ToDoList *-- Item
+ToDoList -- Serialization
+Item *-- CreateDate
+@enduml
