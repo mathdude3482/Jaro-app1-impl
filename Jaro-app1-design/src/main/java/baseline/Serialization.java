@@ -20,7 +20,7 @@ public class Serialization {
         myList.setMyList(list);
         //try new FileWriter with String path as its path. If not found, catch the error.
         try (FileWriter myPath = new FileWriter(path)) {
-            //call Gson method toJson
+            //call Gson method toJson.
             myGson.toJson(myList, myPath);
         } catch(IOException e) {
             e.printStackTrace();

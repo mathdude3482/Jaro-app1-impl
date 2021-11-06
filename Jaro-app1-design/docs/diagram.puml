@@ -87,6 +87,9 @@ class CreateDate {
     - year: double
     - month: double
     - date: double
+    + CreateDate()
+    + CreateDate(String)
+    + CreateDate(String, String, String)
     + getDate()
 }
 
@@ -110,11 +113,11 @@ class Serialization {
 
 javafx.Application <|-- ToDoListApplication
 ToDoListApplication -- ItemController
-ItemController -- Serialization
+ItemController -left- Serialization
 ItemController - HelpWindowController
-ItemController *-- Item
+ItemController *-left- Item
 ItemController - Validator
 ToDoList *-- Item
-ToDoList -- Serialization
+ToDoList -right- Serialization
 Item *-- CreateDate
 @enduml
