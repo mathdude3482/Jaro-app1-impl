@@ -10,7 +10,7 @@ class SerializationTest {
     @Test
     void save_list_creates_save_file() {
         //make new Serialization instance
-        Serialization s = new Serialization();
+        Serialization myPath = new Serialization();
 
         //make new list that will be saved
         List<Item> toSave = new ArrayList<>();
@@ -22,7 +22,7 @@ class SerializationTest {
         File testFile = new File("src/test/resources/test1.json");
 
         //call saveList method with testFile path and list toSave
-        s.saveList(testFile.getPath(), toSave);
+        myPath.saveList(testFile.getPath(), toSave);
 
         //assert the file exists
         assert(testFile.exists());
@@ -56,7 +56,7 @@ class SerializationTest {
     @Test
     void save_list_saves_content_date() {
         //make new Serialization instance
-        Serialization s = new Serialization();
+        Serialization myPath = new Serialization();
         //make new list that will be saved
         List<Item> toSave = new ArrayList<>();
         //fill List with an Item
@@ -66,10 +66,10 @@ class SerializationTest {
         File testFile = new File("src/test/resources/test2.json");
 
         //call saveList method with testFile path and list toSave
-        s.saveList(testFile.getPath(), toSave);
+        myPath.saveList(testFile.getPath(), toSave);
 
         //load the file in with loadJson()
-        List<Item> loadList = s.loadJson(testFile.getPath());
+        List<Item> loadList = myPath.loadJson(testFile.getPath());
 
         //assert content is the same
         assertEquals("2000-01-01", loadList.get(0).getDueDateString());
@@ -78,7 +78,7 @@ class SerializationTest {
     @Test
     void saveListsavesContent() {
         //make new Serialization instance
-        Serialization s = new Serialization();
+        Serialization myPath = new Serialization();
         //make new list that will be saved
         List<Item> toSave = new ArrayList<>();
         //fill List with an Item
@@ -87,9 +87,9 @@ class SerializationTest {
         //make a testFile
         File testFile = new File("src/test/resources/test2.json");
         //call saveList method with testFile path and list toSave
-        s.saveList(testFile.getPath(), toSave);
+        myPath.saveList(testFile.getPath(), toSave);
         //load the file in with loadJson()
-        List<Item> loadList = s.loadJson(testFile.getPath());
+        List<Item> loadList = myPath.loadJson(testFile.getPath());
         //assert content is the same
         assertTrue(loadList.get(0).getIsComplete());
     }
