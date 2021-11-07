@@ -11,28 +11,34 @@ public class Validator {
     public static boolean validDescription(String myString){
         //if the user's string description is between 0 and 256 characters, return true.
         //otherwise, return false.
+        boolean determine = true;
         if (myString.trim().length() == 0 || myString.length() > 256){
-            return false;
+            determine = false;
+            return determine;
         }
-        return true;
+        return determine;
     }
     private static boolean validFormat(String[] editedString){
         //check if the date is in the correct format.
         //if the format is correct, return true.
         //otherwise, return false.
         //if the year is not in the format of YYYY, return false.
+        boolean determine = true;
         if(editedString[0].length() != 4){
-            return false;
+            determine = false;
+            return determine;
         }
         //if the month is not in the format of MM, return false.
         if (editedString[1].length() != 2){
-            return false;
+            determine = false;
+            return determine;
         }
         //if the day is not in the format of DD, return false.
         if (editedString[2].length() != 2){
-            return false;
+            determine = false;
+            return determine;
         }
-        return true;
+        return determine;
     }
 
     private static boolean validMonth(int month){
@@ -44,23 +50,16 @@ public class Validator {
         //if so, return true.
         //otherwise, return false.
         switch (month) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
+            case 1,3,5,7,8,10,12:
                 if (date < 1 || date > 31) {
                     return false;
                 }
-            case 4:
-            case 6:
-            case 9:
-            case 11:
+                break;
+            case 4,6,9,11:
                 if (date < 1 || date > 30) {
                     return false;
                 }
+                break;
             default:
                 break;
         }
@@ -72,11 +71,13 @@ public class Validator {
         int year;
         int month;
         int date;
+        boolean determine = true;
         //split the myDate String so it can be validated.
         String[] splitmyDate = myDate.split("-");
         //check if the input matches the YYYY-MM-DD format.
         if (!validFormat(splitmyDate)) {
-            return false;
+            determine = false;
+            return determine;
         }
         //try to parse the year as an integer.
         try {
@@ -102,18 +103,21 @@ public class Validator {
         }
         //check if the month is valid.
         if (!validMonth(month)) {
-            return false;
+            determine = false;
+            return determine;
         }
 
         //check if the date is valid.
         if (!validDate(month, date)) {
-            return false;
+            determine = false;
+            return determine;
         }
         //check if the date in February is valid.
         if (month == 2 && !checkFebruary(year, date)) {
-                return false;
+            determine = false;
+            return determine;
         }
-        return true;
+        return determine;
     }
     private static boolean checkFebruary(int year, int date){
         //check the date specifically in February and see if it is valid for both normal

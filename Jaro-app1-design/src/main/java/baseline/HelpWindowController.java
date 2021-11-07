@@ -3,7 +3,6 @@
  * Copyright 2021 James Jaro
  */
 package baseline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -79,9 +78,9 @@ public class HelpWindowController {
 
         //create the string that should be put in the text box
         String setString = "This program displays an editable table of items. This table contains three fields: description, " +
-                "due date, and complete?\nThe description field contains a description of the item that will be completed.\nThe due date field" +
+                "due date, and complete.\nThe description field contains a description of the item that will be completed.\nThe due date field" +
                 " contains the date by which you want to complete said item in the format YYYY-MM-DD. The due date can also be sorted" +
-                " by clicking on the \"Due Date\" header.\nThe complete? field contains the current " +
+                " by clicking on the \"Due Date\" header.\nThe complete field contains the current " +
                 "completion status of the item.\nIf the description of an item is too large to fit into the default table, " +
                 "you are able to increase the table size by increasing the size of the window and adjust the size of the different " +
                 "table columns as you wish.";
@@ -185,8 +184,7 @@ public class HelpWindowController {
         //create the string that should be put in the text box
         String setString = "You can save and load the list you are currently working on under the File menu. " +
                 "Here you can select whether you want to save or load the list, and upon choosing one of the options, " +
-                "you will be prompted for the location you want to save/load the file from. \nNote: You can only save/load JSON " +
-                "files.";
+                "you will be prompted for the location you want to save/load the file from.";
 
         //put the setString into helpTextBox
         helpTextBox.setText(setString);

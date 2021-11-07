@@ -8,7 +8,6 @@ public class Item {
     //the item is complete or incomplete.
     private String description;
     private CreateDate dueDate;
-    private String dueDateString;
     private boolean isComplete;
 
     //initialize description, dueDate, and isComplete.
@@ -36,8 +35,7 @@ public class Item {
     }
     public String getDueDateString(){
         //return the due date String.
-        dueDateString = dueDate.getDate();
-        return dueDateString;
+        return  dueDate.getDate();
     }
     public void setDueDate(CreateDate dueDate){
         //set the date to whatever the due date is.

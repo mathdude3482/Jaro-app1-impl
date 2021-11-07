@@ -36,7 +36,7 @@ public class ItemController {
     @FXML
     public void initialize() {
         //set the value factory of descDisplay, dateDisplay, and completeDisplay to
-        //Item variables description, dueDateString, and isComplete respectively
+        //Item variables description, dueDateString, and isComplete respectively.
         descDisplay.setCellValueFactory(new PropertyValueFactory<>("description"));
         dateDisplay.setCellValueFactory(new PropertyValueFactory<>("dueDateString"));
         completeDisplay.setCellValueFactory(new PropertyValueFactory<>("isComplete"));
@@ -53,13 +53,11 @@ public class ItemController {
 
     @FXML
     public void removeClicked(MouseEvent mouseEvent) {
-        //get the current selection in itemTable
+        //get the current selection in itemTable.
         int currentIndex = itemTable.getSelectionModel().getSelectedIndex();
-
-        //get the selected Item
+        //get the selected Item.
         Item toRemove = itemTable.getItems().get(currentIndex);
-
-        //call removeItem() and removeItemTable() with parameters toRemove and currentIndex
+        //call removeItem() and removeItemTable() with parameters toRemove and currentIndex.
         removeItem(toRemove);
         removeItemTable(currentIndex);
     }
@@ -72,7 +70,7 @@ public class ItemController {
     }
 
     @FXML
-    public void editDescClicked(MouseEvent mouseEvent) {
+    public void editDescription(MouseEvent mouseEvent) {
         //call editDescription with the current index and Item that is desired to change
         editDescription(itemTable.getSelectionModel().getSelectedIndex(),
                 itemTable.getItems().get(itemTable.getSelectionModel().getSelectedIndex()));
@@ -278,14 +276,11 @@ public class ItemController {
     public void editComplete(Item toSwap) {
         //get index of current Item in allList
         int foundIndex = matchItem(toSwap);
-
         //get the current state of boolean isComplete
         boolean currentComplete = allList.get(foundIndex).getIsComplete();
-
-        //flip the boolean value
+        //flip the boolean value.
         currentComplete = !currentComplete;
-
-        //set allList to the new boolean value
+        //set allList to the new boolean value.
         allList.get(foundIndex).setComplete(currentComplete);
     }
 
@@ -297,7 +292,6 @@ public class ItemController {
     public void displayAll() {
         //clear itemTable
         clearItemTable();
-
         //for all in allList
         for (int i = 0; i < allList.size(); i++) {
             //add the Item in allList to the same index in itemTable
@@ -333,7 +327,7 @@ public class ItemController {
 
         //for all in allList
         for (int i = 0; i < allList.size(); i++) {
-            //if the Item is complete
+            //if the Item is complete:
             if (allList.get(i).getIsComplete()) {
                 //add it to the completed list
                 completeList.add(allList.get(i));
@@ -347,7 +341,6 @@ public class ItemController {
     public List<Item> getIncompleteList() {
         //clear incompleteList
         List<Item> incompleteList = new ArrayList<>();
-
         //for all in allList
         for (int i = 0; i < allList.size(); i++) {
             //if the Item is incomplete
@@ -362,13 +355,13 @@ public class ItemController {
     }
 
     public int matchItem(Item toFind) {
-        //compare all Item in allList to find the same item and return the appropriate index
+        //compare all Item in allList to find the same item and return the appropriate index.
+        //if the index is not found, return -1.
         for (int i = 0; i < allList.size(); i++) {
             if (toFind == allList.get(i)) {
                 return i;
             }
         }
-
         return -1;
     }
 
@@ -393,9 +386,10 @@ public class ItemController {
 
         Stage stage = new Stage();
 
-        //give it default path "C://", initial file name "list", and extension ".json"
+        //give it default path "C://", initial file name "list", and extension ".json" or ".txt".
         fileChooser.setInitialDirectory(new File("C://"));
         fileChooser.setInitialFileName("list");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt file","*.txt"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON file","*.json"));
 
         //show save dialogue
@@ -411,8 +405,9 @@ public class ItemController {
 
         Stage stage = new Stage();
 
-        //give it default path "C://" and extension ".json"
+        //give it default path "C://" and extension ".json" or ".txt".
         fileChooser.setInitialDirectory(new File("C://"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt file","*.txt"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON file","*.json"));
 
         //show open dialogue
