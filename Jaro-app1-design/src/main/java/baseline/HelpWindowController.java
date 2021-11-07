@@ -106,8 +106,7 @@ public class HelpWindowController {
         helpTextBox.clear();
 
         //create the string that should be put in the text box
-        String setString = "You can remove an to the list you are working on by clicking the \"Remove Item\" button while currently selecting the item you want to remove. " +
-                "By doing this, you will add a default item with description \"New Item\", due date \"2000-01-01\"and completion status false.";
+        String setString = "You can remove an item from the list you are working on by clicking the \"Remove Item\" button while currently selecting the item you want to remove.";
 
         //put the setString into helpTextBox
         helpTextBox.setText(setString);
@@ -147,7 +146,7 @@ public class HelpWindowController {
                 "clicking the \"Edit Due Date\" button. This will open up a new window. " +
                 "You can enter any valid date in the Gregorian Calendar in the format YYYY-MM-DD, and upon clicking \"Enter\" will change " +
                 "the currently-selected item's due date to the entered date.\nAdditionally, you can sort the list of items by clicking" +
-                " on the header \"Due Date\"";
+                " on the header \"Due Date\".";
 
         //put the setString into helpTextBox
         helpTextBox.setText(setString);

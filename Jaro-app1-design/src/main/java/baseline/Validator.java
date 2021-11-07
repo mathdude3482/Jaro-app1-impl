@@ -124,19 +124,22 @@ public class Validator {
         //and leap years.
         //if valid, return true.
         //otherwise, return false.
+        //determine if the year is a leap year.
         if (year % 4 == 0) {
+            //determine if the date is valid given that it is a leap year.
             if (date < 1 || date > 29)
             {
                 return false;
             }
         }
+        //if the year is not a leap year:
         else {
+            //determine if the date is valid given that it is not a leap year.
             if (date < 1 || date > 28)
             {
                 return false;
             }
         }
-
         return true;
     }
 }

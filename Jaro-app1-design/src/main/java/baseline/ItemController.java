@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class ItemController {
     @FXML
     public void initialize() {
         //set the value factory of descDisplay, dateDisplay, and completeDisplay to
-        //Item variables description, dueDateString, and isComplete respectively.
+        //the item variables: description, dueDateString, and isComplete respectively.
         descDisplay.setCellValueFactory(new PropertyValueFactory<>("description"));
         dateDisplay.setCellValueFactory(new PropertyValueFactory<>("dueDateString"));
         completeDisplay.setCellValueFactory(new PropertyValueFactory<>("isComplete"));
@@ -44,10 +43,10 @@ public class ItemController {
 
     @FXML
     public void addClicked(MouseEvent mouseEvent) {
-        //call addItem() to add a new Item to allList
+        //call addItem() to add a new Item to allList.
         Item defaultItem = addItem();
 
-        //get the added Item from addItem and call addItemTable() with that as a parameter
+        //get the added Item from addItem and call addItemTable() with defaultItem as a parameter.
         addItemTable(defaultItem);
     }
 
@@ -72,7 +71,7 @@ public class ItemController {
     @FXML
     public void editDescription(MouseEvent mouseEvent) {
         //call editDescription with the current index and Item that is desired to change
-        editDescription(itemTable.getSelectionModel().getSelectedIndex(),
+        editDescriptionName(itemTable.getSelectionModel().getSelectedIndex(),
                 itemTable.getItems().get(itemTable.getSelectionModel().getSelectedIndex()));
     }
 
@@ -91,13 +90,13 @@ public class ItemController {
         //call editComplete with the Item at currentIndex to edit allList
         editComplete(itemTable.getItems().get(currentIndex));
 
-        //call editCompleteTable with currentIndex and the new boolean to edit itemTable
+        //call editCompleteTable with currentIndex and the new boolean to edit itemTable.
         editCompleteTable(currentIndex, itemTable.getItems().get(currentIndex));
     }
 
     @FXML
     public void displayAllClicked(ActionEvent actionEvent) {
-        //call displayAll()
+        //call displayAll().
         displayAll();
     }
 
@@ -122,43 +121,40 @@ public class ItemController {
     @FXML
     public void saveListClicked(ActionEvent actionEvent) {
         //make new Serialization
-        Serialization s = new Serialization();
+        Serialization myPath = new Serialization();
 
         //call method openFileChooser() to get a path
         String path = openSaveFileChooser();
 
         //call Serialization method saveList with parameter path and allList
-        s.saveList(path, allList);
+        myPath.saveList(path, allList);
     }
 
     @FXML
     public void loadListClicked(ActionEvent actionEvent) {
         //make new Serialization
-        Serialization s = new Serialization();
+        Serialization myPath = new Serialization();
 
         //call method openFileChooser() to get a path
         String path = openLoadFileChooser();
 
         //call Serialization method loadJson
-        allList = s.loadJson(path);
+        allList = myPath.loadJson(path);
 
-        //display all of the list
+        //display the entire list.
         displayAll();
     }
 
     @FXML
     public void openHelpWindowClicked(ActionEvent actionEvent) {
-        //try to open HelpWindowController.fxml
+        //try to open HelpWindowController.fxml; if not found, catch the error.
         try {
             Parent root = FXMLLoader.load(getClass().getResource("HelpWindowController.fxml"));
-
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
             stage.setScene(scene);
             stage.setTitle("Help");
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -203,7 +199,7 @@ public class ItemController {
         itemTable.getItems().clear();
     }
 
-    public void editDescription(int currentIndex, Item toChange) {
+    public void editDescriptionName(int currentIndex, Item toChange){
         boolean isValidDescription = false;
         String change = "";
 
@@ -221,13 +217,11 @@ public class ItemController {
     }
 
     public Item changeDescription(String edit, Item toChange) {
-        //call openEditWindow with parameter "Edit Description"
+        //call openEditWindow.
         int editIndex = matchItem(toChange);
-
-        //change the description in allList
+        //change the description in allList.
         allList.get(editIndex).setDescription(String.format("%256s", edit).trim());
-
-        //return the now changed Item from allList
+        //return the now changed Item from allList.
         return allList.get(editIndex);
     }
 
@@ -239,32 +233,26 @@ public class ItemController {
     public void editDueDate(int currentIndex, Item toChange) {
         boolean isValidDate = false;
         String change = "";
-
         //open a new window for input & get desired change
         while (!isValidDate) {
             change = openInputWindow("Enter a new due date here in the format YYYY-MM-DD" +
                     " that is in the Gregorian Calendar", toChange.getDueDateString());
             isValidDate = Validator.validDueDate(change);
         }
-
-        //change the Date in allList
+        //change the Date in allList.
         Item changed = changeDate(change, toChange);
-
-        //change the date in the table
+        //change the date in the table.
         changeDateTable(changed, currentIndex);
     }
 
     public Item changeDate(String edit, Item toChange) {
         //get the Item to change's index
         int editIndex = matchItem(toChange);
-
         //make a new Date with the edit String
         CreateDate newDate = new CreateDate(edit);
-
         //set the new Date into the appropriate index in allList
         allList.get(editIndex).setDueDate(newDate);
-
-        //return the new Item
+        //return the new Item.
         return allList.get(editIndex);
     }
 
@@ -302,10 +290,8 @@ public class ItemController {
     public void displayComplete(List<Item> completeList) {
         //clear table
         itemTable.getItems().clear();
-
-        //for all Item in completeList
         for (int i = 0; i < completeList.size(); i++) {
-            //add it to the table
+            //add the items to the table.
             itemTable.getItems().add(i, completeList.get(i));
         }
     }
@@ -313,7 +299,6 @@ public class ItemController {
     public void displayIncomplete(List<Item> incompleteList) {
         //clear itemTable
         itemTable.getItems().clear();
-
         //for all in incompleteList
         for (int i = 0; i < incompleteList.size(); i++) {
             //add it to the table
@@ -324,17 +309,14 @@ public class ItemController {
     public List<Item> getCompleteList() {
         //clear completeList
         List<Item> completeList = new ArrayList<>();
-
         //for all in allList
         for (int i = 0; i < allList.size(); i++) {
-            //if the Item is complete:
+            //if the Item is complete, then add it to the completed list.
             if (allList.get(i).getIsComplete()) {
-                //add it to the completed list
                 completeList.add(allList.get(i));
             }
         }
-
-        //return the list of completed items
+        //return the list of completed items.
         return completeList;
     }
 
@@ -343,13 +325,11 @@ public class ItemController {
         List<Item> incompleteList = new ArrayList<>();
         //for all in allList
         for (int i = 0; i < allList.size(); i++) {
-            //if the Item is incomplete
+            //if the Item is incomplete, add it to the incomplete list.
             if (!allList.get(i).getIsComplete()) {
-                //add it to the incomplete list
                 incompleteList.add(allList.get(i));
             }
         }
-
         //return the list of incomplete items
         return incompleteList;
     }
@@ -416,9 +396,8 @@ public class ItemController {
         //return selected file path
         return file.getPath();
     }
-
     public List<Item> getAllList() {
-        //return allList
+        //return allList.
         return allList;
     }
 

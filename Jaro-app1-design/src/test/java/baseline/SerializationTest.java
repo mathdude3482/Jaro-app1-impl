@@ -1,5 +1,8 @@
+/*
+ * UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ * Copyright 2021 James Jaro
+ */
 package baseline;
-
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ class SerializationTest {
     @Test
     void save_list_saves_content_description() {
         //make new Serialization instance
-        Serialization s = new Serialization();
+        Serialization myPath = new Serialization();
 
         //make new list that will be saved
         List<Item> toSave = new ArrayList<>();
@@ -44,10 +47,10 @@ class SerializationTest {
         File testFile = new File("src/test/resources/test2.json");
 
         //call saveList method with testFile path and list toSave
-        s.saveList(testFile.getPath(), toSave);
+        myPath.saveList(testFile.getPath(), toSave);
 
         //load the file in with loadJson()
-        List<Item> loadList = s.loadJson(testFile.getPath());
+        List<Item> loadList = myPath.loadJson(testFile.getPath());
 
         //assert content is the same
         assertEquals("one", loadList.get(0).getDescription());

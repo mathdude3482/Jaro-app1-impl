@@ -1,6 +1,5 @@
-@startuml
-@startuml
 
+@startuml
 class ToDoListApplication {
     + main()
     + start()
@@ -15,7 +14,7 @@ class ItemController {
     + addClicked()
     + removeClicked()
     + clearClicked()
-    + editDescClicked()
+    + editDescription()
     + editDateClicked()
     + editCompleteClicked()
     + displayAllClicked()
@@ -30,7 +29,7 @@ class ItemController {
     + removeItemTable(Integer)
     + clearList()
     + clearItemTable()
-    + editDescription(Integer, Item)
+    + editDescriptionName(Integer, Item)
     + changeDescription(String, Item)
     + changeDescriptionTable(Item, Integer)
     + editDueDate(Integer, Item)
